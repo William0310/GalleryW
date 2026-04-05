@@ -94,6 +94,9 @@ body {
                       url('images/qinghai1.jpg');
     background-size: cover;
     background-position: center;
+    top: 10vh; 
+    background-color: var(--card-bg-1); 
+    z-index: 1;
 }
 .card-2 { 
     top: calc(10vh + 30px); /* 露出上面卡片 30px 的边缘 */
