@@ -101,7 +101,7 @@ body {
     z-index: 2; 
 }
 .card-3 { 
-    top: calc(10vh + 30px); 
+    top: calc(10vh + 60px); /*每加一个卡片+30px*/
     background-color: var(--card-bg-3); 
     z-index: 3; 
 }
