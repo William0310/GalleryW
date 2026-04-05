@@ -117,11 +117,18 @@ body {
     top: calc(14vh + 60px); /*每加一个卡片+30px*/
     background-color: var(--card-bg-3); 
     z-index: 3; 
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+    url('images/chongqing1.jpg');
 }
 .card-4 { 
     top: calc(14vh + 90px); /*每加一个卡片+30px*/
     background-color: var(--card-bg-3); 
     z-index: 4; 
+}
+.card-5 { 
+    top: calc(14vh + 120px); /*每加一个卡片+30px*/
+    background-color: var(--card-bg-3); 
+    z-index: 5; 
 }
 
 /* --- 卡片内部排版 --- */
