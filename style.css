@@ -18,11 +18,19 @@ h2 {
     box-sizing: border-box;
 }
 
+img {
+    display: block; /* 消除底部的幽灵间隙 */
+    width: 100%;
+    height: auto;
+}   
+
 body {
     font-family: 'Manrope', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
     -webkit-font-smoothing: antialiased;
+     margin: 0;
+    padding: 0;
 }
 
 /* --- 页面骨架 --- */
@@ -91,7 +99,7 @@ body {
 /* 卡片阶梯式层叠控制 */
 .card-1 { 
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                      url('images/qinghai1.jpg');
+    url('images/qinghai1.jpg');
     background-size: cover;
     background-position: center;
     top: 10vh; 
