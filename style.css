@@ -124,12 +124,12 @@ body {
     background-size:102%;
 }
 .card-4 { 
-    top: calc(14vh + 90px); /*每加一个卡片+30px*/
+    top: calc(18vh + 90px); /*每加一个卡片+30px*/
     background-color: var(--card-bg-3); 
     z-index: 4; 
 }
 .card-5 { 
-    top: calc(14vh + 120px); /*每加一个卡片+30px*/
+    top: calc(22vh + 120px); /*每加一个卡片+30px*/
     background-color: var(--card-bg-3); 
     z-index: 5; 
 }
