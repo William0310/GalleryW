@@ -110,7 +110,7 @@ body::after {
     bottom: 2rem;
     right: 3rem;
     color: rgba(255, 255, 255, 0.4); 
-    font-size: 0.75rem;
+    font-size: 1rem;
     letter-spacing: 0.2em;
     font-weight: 600;
     pointer-events: none; 
@@ -146,3 +146,4 @@ body::after {
     .pano-item img {
         border-radius: 4px; 
     }
+}
