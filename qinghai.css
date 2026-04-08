@@ -39,7 +39,7 @@ html, body {
     height: 100vh;
     
     /* 首尾留白，确保第一张和最后一张也能居中 */
-    padding: 0 50vw; 
+   
     gap: 10vw; /* 两张全景图之间的间距 */
     
     /* 开启横向滚动并隐藏丑陋的滚动条 */
@@ -48,6 +48,8 @@ html, body {
     
     /* 横向滚动的磁吸魔法 */
     scroll-snap-type: x mandatory; 
+
+   
 }
 
 .gallery-track::-webkit-scrollbar {
@@ -132,8 +134,15 @@ html, body {
     50% { opacity: 1; transform: translateX(5px); }
     100% { opacity: 0.2; transform: translateX(0); }
 }
+.gallery-track::before,
+.gallery-track::after {
+    content: ''; /* 必须有 content 才能生成实体 */
+    
+    /* flex: 0 0 宽度;  意思是：绝对不许缩小，定死宽度！*/
+    flex: 0 0 25vw; /* 电脑端制造 25% 屏幕宽度的透明空间 */
+}
 
-
+}
 /* --- 7. 手机端响应式终极适配 (专为 iPhone/安卓 竖屏优化) --- */
 @media (max-width: 768px) {
     
@@ -189,4 +198,7 @@ html, body {
     .end-credits h2 {
         font-size: 1.5rem;
     }
+    .gallery-track::before,
+    .gallery-track::after {
+        flex: 0 0 10vw; /* 手机端只需要 10% 宽度的透明空间 */
 }
