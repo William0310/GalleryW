@@ -46,7 +46,9 @@
 <script>
     const track = document.querySelector('.gallery-track');
 
-    // --- 1. 电脑端逻辑 (保持不变) ---
+    // ==========================================
+    // 1. 电脑端：鼠标滚轮 / 触控板逻辑 
+    // ==========================================
     track.addEventListener('wheel', (event) => {
         if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
         if (event.deltaY !== 0) {
@@ -58,39 +60,47 @@
         }
     }, { passive: false });
 
-    // --- 2. 手机端逻辑 (全能进化版) ---
+    // ==========================================
+    // 2. 手机端：带方向锁定的触控逻辑
+    // ==========================================
     let startY = 0;
     let startX = 0;
+    let isSwipingHorizontal = null; // 核心：滑动方向锁
 
     track.addEventListener('touchstart', (e) => {
         startY = e.touches[0].clientY;
         startX = e.touches[0].clientX;
+        isSwipingHorizontal = null; // 每次手指碰到屏幕，重置这把锁
     }, { passive: false });
 
     track.addEventListener('touchmove', (e) => {
         const currentY = e.touches[0].clientY;
         const currentX = e.touches[0].clientX;
 
-        // 计算手指移动的距离
         const diffY = startY - currentY;
         const diffX = startX - currentX;
 
-        // 核心逻辑：不管是上下划还是左右划，我们都把它转化为横向滚动
-        // 这样就彻底绕过了系统的下拉刷新拦截
-        
-        // 如果垂直滑动更明显，劫持它！
-        if (Math.abs(diffY) > Math.abs(diffX)) {
-            e.preventDefault(); // 阻止下拉刷新
-            track.scrollLeft += diffY;
-        } 
-        // 如果水平滑动更明显，我们也手动接管它（因为设置了 touch-action: none）
-        else {
-            track.scrollLeft += diffX;
+        // 【最核心逻辑】：在手指移动的最初几像素，判断意图并锁死方向！
+        if (isSwipingHorizontal === null) {
+            // 如果横向移动的幅度大于纵向，判定为左右划
+            isSwipingHorizontal = Math.abs(diffX) > Math.abs(diffY);
         }
 
-        // 更新起点
-        startY = currentY;
-        startX = currentX;
+        // 1. 如果意图是【左右划】
+        if (isSwipingHorizontal) {
+            // JS 什么都不做！直接放行！
+            // 让苹果的原生 GPU 加速和物理惯性接管，绝对如丝般顺滑！
+            return; 
+        }
+
+        // 2. 如果意图是【上下划】
+        // 彻底劫持！防止触发下拉刷新，并把纵向动能转给横向
+        e.preventDefault(); 
+        track.scrollLeft += diffY;
+        
+        // 只更新 Y 轴起点，让拖拽始终跟手
+        startY = currentY; 
+
     }, { passive: false });
 </script>
 </body>

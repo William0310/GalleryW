@@ -44,7 +44,7 @@ html, body {
     /* 开启横向滚动并隐藏丑陋的滚动条 */
     overflow-x: auto;
     scrollbar-width: none; /* Firefox */
-    touch-action: none;
+    
 }
 
 .gallery-track::-webkit-scrollbar {
