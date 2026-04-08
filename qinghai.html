@@ -46,25 +46,51 @@
 <script>
     const track = document.querySelector('.gallery-track');
 
+    // --- 1. 电脑端逻辑 (保持不变) ---
     track.addEventListener('wheel', (event) => {
-        // 1. 如果用户用触控板左右划，完全放行
-        if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
-            return;
-        }
-
-        // 2. 拦截上下滚动，转化为丝滑的横向自由移动
+        if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
         if (event.deltaY !== 0) {
             event.preventDefault(); 
-            
-            // 阻尼系数（减速器）：防止苹果触控板太滑导致画面乱飞
-            // 0.8 是一个很舒服的逛画廊速度，你可以自己微调
-            const scrollSpeed = 0.8; 
-            
             track.scrollBy({
-                left: event.deltaY * scrollSpeed,
-                behavior: 'auto' // 去掉 smooth，让画面完全贴合手指的物理惯性
+                left: event.deltaY * 0.8,
+                behavior: 'auto' 
             });
         }
+    }, { passive: false });
+
+    // --- 2. 手机端逻辑 (全能进化版) ---
+    let startY = 0;
+    let startX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY;
+        startX = e.touches[0].clientX;
+    }, { passive: false });
+
+    track.addEventListener('touchmove', (e) => {
+        const currentY = e.touches[0].clientY;
+        const currentX = e.touches[0].clientX;
+
+        // 计算手指移动的距离
+        const diffY = startY - currentY;
+        const diffX = startX - currentX;
+
+        // 核心逻辑：不管是上下划还是左右划，我们都把它转化为横向滚动
+        // 这样就彻底绕过了系统的下拉刷新拦截
+        
+        // 如果垂直滑动更明显，劫持它！
+        if (Math.abs(diffY) > Math.abs(diffX)) {
+            e.preventDefault(); // 阻止下拉刷新
+            track.scrollLeft += diffY;
+        } 
+        // 如果水平滑动更明显，我们也手动接管它（因为设置了 touch-action: none）
+        else {
+            track.scrollLeft += diffX;
+        }
+
+        // 更新起点
+        startY = currentY;
+        startX = currentX;
     }, { passive: false });
 </script>
 </body>
