@@ -132,3 +132,61 @@ html, body {
     50% { opacity: 1; transform: translateX(5px); }
     100% { opacity: 0.2; transform: translateX(0); }
 }
+
+
+/* --- 7. 手机端响应式终极适配 (专为 iPhone/安卓 竖屏优化) --- */
+@media (max-width: 768px) {
+    
+    /* 1. 返回按钮：稍微缩小并调整位置，防误触，不挡画面 */
+    .btn-back {
+        top: 1.5rem;
+        left: 1.5rem;
+        font-size: 0.75rem;
+        opacity: 0.8; /* 手机上默认稍微亮一点，方便找到 */
+    }
+
+    /* 2. 核心轨道：缩小首尾留白和图片间距 */
+    .gallery-track {
+        /* 手机上不需要 50vw 那么夸张的居中留白，10vw 刚好能露出一点边缘暗示 */
+        padding: 0 10vw; 
+        gap: 8vw; 
+    }
+
+    /* 3. 全景图卡片：高度压缩，拯救竖屏比例 */
+    .pano-item {
+        /* 【核心调校】：把高度从 75vh 降到 50vh 左右。
+           这样图片依然很大，但底部能留出足够的空间显示文字，不用上下滑 */
+        height: 50vh; 
+    }
+
+    .pano-item img {
+        /* 手机屏幕小，圆角稍微收敛一点，显得更精致 */
+        border-radius: 4px; 
+    }
+
+    /* 4. 文字排版：从“左右分布”改成“上下叠放” */
+    .pano-caption {
+        margin-top: 1rem;
+        /* 手机屏幕窄，强行左右排版文字会打架，直接改为列排版 (上下) */
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 0.4rem; /* 标题和参数之间的微小间距 */
+    }
+
+    .pano-caption h3 {
+        font-size: 1.25rem; /* 标题稍微缩小 */
+    }
+
+    .pano-caption p {
+        font-size: 0.7rem; /* 参数字体缩小，保持高级感 */
+    }
+
+    /* 5. 结尾致谢卡片 */
+    .end-credits {
+        width: 80vw; 
+    }
+
+    .end-credits h2 {
+        font-size: 1.5rem;
+    }
+}
