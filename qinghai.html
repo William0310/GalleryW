@@ -1,26 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qinghai Panoramas | Will's Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Qinghai Panoramas | William's Gallery</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="qinghai.css">
-   <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <link rel="stylesheet" href="qinghai.css?v=1000">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
 
     <a href="index.html" class="btn-back">← Back to Home</a>
 
     <main class="gallery-track">
-         <article class="pano-item">
-            <img src="images/ta1.webp" alt="Qunjia Forest" loading="lazy">
+        <article class="pano-item">
+            <img src="images/ta1.webp" alt="Ta'er Si" loading="lazy">
             <div class="pano-caption">
                 <h3>Ta'er Si</h3>
                 <p>EOS R5 | 42mm</p>
             </div>
         </article>  
+        
         <article class="pano-item">
             <img src="images/pano.webp" alt="Qinghai Lake Panorama" loading="lazy">
             <div class="pano-caption">
@@ -28,58 +29,65 @@
                 <p>Canon R5 | Panorama - 31mm | f/8</p>
             </div>
         </article>
-<article class="pano-item">
-            <img src="images/qinghai1.jpg" alt="Qunjia Forest" loading="lazy">
+        
+        <article class="pano-item">
+            <img src="images/qinghai1.jpg" alt="Qunjia National Park" loading="lazy">
             <div class="pano-caption">
                 <h3>Qunjia National Park</h3>
                 <p>DJI Mini 3 Pro | 24mm | f/1.7</p>
             </div>
         </article>
-         <article class="pano-item">
-            <img src="images/Qinghai3.webp" alt="Chaka Salt Lake" loading="lazy">
+        
+        <article class="pano-item">
+            <img src="images/Qinghai3.webp" alt="DaoHuCha" loading="lazy">
             <div class="pano-caption">
                 <h3>DaoHuCha</h3>
                 <p>EOS R5 | 85mm</p>
             </div>
         </article>
+        
         <article class="pano-item">
-            <img src="images/pano2.webp" alt="Chaka Salt Lake" loading="lazy">
+            <img src="images/pano2.webp" alt="QingHai Lake Panorama" loading="lazy">
             <div class="pano-caption">
                 <h3>QingHai Lake</h3>
                 <p>Canon R5 | Panorama - 42mm | f/4</p>
             </div>
         </article>
-<article class="pano-item">
-            <img src="images/chaka1.webp" alt="Qunjia Forest" loading="lazy">
+        
+        <article class="pano-item">
+            <img src="images/chaka1.webp" alt="Chaka Salt Lake 1" loading="lazy">
             <div class="pano-caption">
                 <h3>Chaka Salt Lake</h3>
                 <p>DJI Mini 3 Pro | 24mm | f/1.7</p>
             </div>
         </article>
-       <article class="pano-item">
-            <img src="images/chaka2.webp" alt="Qunjia Forest" loading="lazy">
+        
+        <article class="pano-item">
+            <img src="images/chaka2.webp" alt="Chaka Salt Lake 2" loading="lazy">
             <div class="pano-caption">
                 <h3>Chaka Salt Lake</h3>
                 <p>Canon R5 | 24mm | f/4</p>
             </div>
         </article>
+        
         <article class="pano-item">
-            <img src="images/lake1.webp" alt="Qunjia Forest" loading="lazy">
+            <img src="images/lake1.webp" alt="Qinghai Lake" loading="lazy">
             <div class="pano-caption">
                 <h3>Qinghai Lake</h3>
                 <p>Canon R5 | 24mm | f/4</p>
             </div>
         </article>
+        
         <article class="pano-item">
-            <img src="images/qjpano.webp" alt="Qunjia Forest" loading="lazy">
+            <img src="images/qjpano.webp" alt="Qunjia National Park Panorama 1" loading="lazy">
             <div class="pano-caption">
                 <h3>Qunjia National Park</h3>
                 <p>DJI Mini 3 Pro | 24mm | f/1.7</p>
             </div>
         </article>
          
-  <article class="pano-item">
-            <img src="images/qjpano.webp" alt="Qunjia Forest" loading="lazy">
+        <article class="pano-item">
+            <img src="images/qjpano.webp" alt="Qunjia National Park Panorama 2" loading="lazy">
             <div class="pano-caption">
                 <h3>Qunjia National Park</h3>
                 <p>DJI Mini 3 Pro | 24mm | f/1.7</p>
@@ -87,10 +95,10 @@
         </article>
          
         <article class="pano-item end-credits">
-            <h2>THE END. THANK YOU </h2>
+            <h2>THE END. THANK YOU</h2>
         </article>
-
     </main>
+
 <script>
     const track = document.querySelector('.gallery-track');
 
@@ -113,12 +121,12 @@
     // ==========================================
     let startY = 0;
     let startX = 0;
-    let isSwipingHorizontal = null; // 核心：滑动方向锁
+    let isSwipingHorizontal = null;
 
     track.addEventListener('touchstart', (e) => {
         startY = e.touches[0].clientY;
         startX = e.touches[0].clientX;
-        isSwipingHorizontal = null; // 每次手指碰到屏幕，重置这把锁
+        isSwipingHorizontal = null; 
     }, { passive: false });
 
     track.addEventListener('touchmove', (e) => {
@@ -128,25 +136,16 @@
         const diffY = startY - currentY;
         const diffX = startX - currentX;
 
-        // 【最核心逻辑】：在手指移动的最初几像素，判断意图并锁死方向！
         if (isSwipingHorizontal === null) {
-            // 如果横向移动的幅度大于纵向，判定为左右划
             isSwipingHorizontal = Math.abs(diffX) > Math.abs(diffY);
         }
 
-        // 1. 如果意图是【左右划】
         if (isSwipingHorizontal) {
-            // JS 什么都不做！直接放行！
-            // 让苹果的原生 GPU 加速和物理惯性接管，绝对如丝般顺滑！
             return; 
         }
 
-        // 2. 如果意图是【上下划】
-        // 彻底劫持！防止触发下拉刷新，并把纵向动能转给横向
         e.preventDefault(); 
-        track.scrollLeft += diffY*2;
-        
-        // 只更新 Y 轴起点，让拖拽始终跟手
+        track.scrollLeft += diffY * 2;
         startY = currentY; 
 
     }, { passive: false });
