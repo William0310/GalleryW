@@ -1,0 +1,218 @@
+/* --- 1. 基础设定 --- */
+html, body {
+ margin: 0;
+    padding: 0;
+    background-color: #0c0c0e; 
+    color: #e0e0e0;
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* --- 2. 悬浮返回按钮 (复用青海设计) --- */
+.btn-back {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    z-index: 100;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+.btn-back:hover { opacity: 1; }
+
+/* --- 3. 首屏：巨幕标题 --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-title {
+    /* 引入衬线体，营造艺术感 */
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin: 0;
+    color: #ffffff;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: #888;
+    margin-top: 1rem;
+    text-transform: uppercase;
+}
+
+/*杂志风核心排版 */
+.editorial-gallery {
+    padding: 0 5vw 20vh 5vw;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 单个照片容器 */
+.photo-card {
+    margin-bottom: 25vh; /* 极其奢侈的上下留白 */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+@media (min-width: 769px) {
+    /* 靠左的横图，占屏幕 60% */
+    .align-left {
+        width: 65%;
+        align-self: flex-start;
+    }
+    
+    /* 靠右的竖图，占屏幕 40% */
+    .align-right.portrait {
+        width: 40%;
+        align-self: flex-end;
+    }
+
+    /* 居中的全屏大图，占屏幕 85% */
+    .align-center.full {
+        width: 88%;
+        align-self: center;
+    }
+
+    /* 【灵魂设计】让竖图往上提，打破平齐的间距，形成视觉交叠感 */
+    .overlap-up {
+        margin-top: -15vh; 
+    }
+}
+
+/* --- 5. 图像包装与特效 --- */
+.image-wrapper {
+    width: 100%;
+    /* 隐藏溢出，配合悬停放大特效 */
+    overflow: hidden; 
+    border-radius: 4px; /* 日本风更克制，用小圆角 */
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* 极其缓慢的电影感过渡 */
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 悬停时画框不动，照片缓慢拉近 */
+.photo-card:hover .image-wrapper img {
+    transform: scale(1.04);
+}
+
+/* --- 6. 文字参数排版 --- */
+.meta-data {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 极细的高级分割线 */
+    padding-bottom: 1rem;
+}
+
+.meta-data h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    font-style: italic; /* 标题用斜体衬线，逼格拉满 */
+    margin: 0;
+    color: #fff;
+}
+
+.meta-data p {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: #777;
+    margin: 0;
+}
+
+/* --- 7. 动画：滚动浮现 (Scroll Reveal) --- */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(60px); /* 初始位置往下偏移 */
+    transition: opacity 1s ease-out, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* JS 加上这个 class 时，元素浮上来 */
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 8. 结尾 --- */
+.end-credits {
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #555;
+    font-style: italic;
+}
+.photo-card:last-of-type {
+    margin-bottom: 5vh; /* 让它离结尾更近一点 */
+}
+
+/* --- 9. 手机端响应式 --- */
+@media (max-width: 768px) {
+    .hero-title { font-size: 3.5rem; }
+    
+    .editorial-gallery {
+        padding: 0 6vw 10vh 6vw;
+    }
+    
+    /* 手机端取消所有错落，全部满宽，保证清晰度 */
+    .photo-card {
+        width: 100% !important;
+        margin-top: 0 !important;
+        margin-bottom: 15vh; 
+    }
+
+    .meta-data {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .meta-data h2 { font-size: 1.5rem; }
+}
+/* 针对合作链接的专项美化 */
+.collab-link {
+    /* 1. 字号直接拉大，0.9rem 比旁边 0.7rem 的参数大出两号 */
+    font-size: 0.9rem !important; 
+    
+    /* 2. 字重加粗，产生厚度对比 */
+    font-weight: 700; 
+    
+    /* 3. 颜色强制用纯白，跟旁边暗灰色的参数彻底拉开 */
+    color: #ffffff !important; 
+    
+    text-decoration: none;
+    margin-left: 10px; /* 跟前面的竖线拉开点距离 */
+    border-bottom: 1.5px solid rgba(255,255,255,0.3); /* 加个稍微厚一点的下划线 */
+    transition: all 0.3s ease;
+}
+
+.collab-link:hover {
+    border-bottom: 1.5px solid #fff; /* 鼠标放上去下划线全亮 */
+    opacity: 0.8;
+}
