@@ -148,11 +148,11 @@ body.lang-zh::after {
 
     .pano-item {
         /* 🎯 图片高度拉大到 60vh，冲击力更强 */
-        height: 60vh; 
+        height: 63vh; 
     }
 
     .pano-item img {
-        border-radius: 15px; 
+        border-radius: 18px; 
     }
 
     .pano-caption {
@@ -171,7 +171,7 @@ body.lang-zh::after {
     }
 
     .end-credits {
-        width: 80vw; 
+        width: 70vw; 
     }
 
     .end-credits h2 {
