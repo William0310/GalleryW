@@ -6,7 +6,8 @@ html, body {
     color: #e0e0e0;
     font-family: 'Manrope', sans-serif;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+  
+    
 }
 
 /* --- 2. 悬浮返回按钮 (复用青海设计) --- */
