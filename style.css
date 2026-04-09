@@ -1,19 +1,19 @@
 
+/* Welcome :) Mobile adaptive formatting technology @Dia  */
 
 
-/* --- 基础重置与暗黑主题变量 --- */
 :root {
-    --bg-color: #0a0a0a;       /* 极暗的深空灰底色 */
-    --text-main: #f5f5f5;      /* 柔和的亮白色文字 */
-    --text-muted: #c2c2c2;     /* 辅助文字灰色 */
-    --card-bg-1: #0a0a0a;      /* 卡片1底色 */
-    --card-bg-2: #242424;      /* 卡片2底色 */
-    --card-bg-3: #2e2e2e;      /* 卡片3底色 */
+    --bg-color: #0a0a0a;       
+    --text-main: #f5f5f5;      
+    --text-muted: #c2c2c2;     
+    --card-bg-1: #0a0a0a;      
+    --card-bg-2: #242424;      
+    --card-bg-3: #2e2e2e;      
 }
 h2 {
-    /* ... 之前的代码 ... */
-    hyphens: auto;           /* 自动加连字符（如果浏览器支持） */
-    overflow-wrap: break-word; /* 强制长单词换行，不破坏布局 */
+
+    hyphens: auto;          
+    overflow-wrap: break-word;
 }
 * {
     margin: 0;
@@ -22,7 +22,7 @@ h2 {
 }
 
 img {
-    display: block; /* 消除底部的幽灵间隙 */
+    display: block; 
     width: 100%;
     height: auto;
 }   
@@ -36,14 +36,14 @@ body {
     padding: 0;
 }
 
-/* --- 页面骨架 --- */
+/* ---  --- */
 .container {
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 5%;
 }
 
-/* --- 首屏介绍区 (Hero) --- */
+/* --- (Hero) --- */
 .hero {
     min-height: 80vh;
     display: flex;
@@ -61,16 +61,16 @@ body {
 }
 
 .hero h1 {
-    font-size: clamp(3rem, 6vw, 6rem); /* 响应式巨型字体 */
+    font-size: clamp(3rem, 6vw, 6rem); /* biggy font */
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.03em;
     max-width: 800px;
 }
 
-/* --- 核心魔法：层叠卡片堆 (The Stacking Cards) --- */
+/* --- (The Stacking Cards) --- */
 .projects-stack {
-    padding-bottom: 30vh; /* 底部留白，确保最后一张卡片能划过去 */
+    padding-bottom: 30vh; 
     display: flex;
     flex-direction: column;
     gap: 80px; /* 滚动前卡片之间的间距 */
@@ -87,19 +87,19 @@ body {
     flex-direction: column;
     justify-content: space-between;
     
-    /* 边缘光泽与阴影，打造空间立体感 */
+
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.6); 
     
     transform-origin: top center;
     overflow: hidden;
     
-    /* 背景设置（为照片准备） */
+
     background-size: cover;
     background-position: center;
 }
 
-/* 卡片阶梯式层叠控制 */
+/* cards */
 .card-1 { 
     
     
@@ -165,7 +165,7 @@ background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
     
 }
 
-/* --- 卡片内部排版 --- */
+/* --- innner cards --- */
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -191,7 +191,7 @@ background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
     max-width: 500px;
 }
 
-/* 交互按钮 */
+
 .btn-view {
     display: inline-block;
     margin-top: 2rem;
@@ -216,7 +216,7 @@ footer {
     font-size: 14px;
 }
 
-/* --- 📱 移动端响应式适配 (专治文字挤压) --- */
+/* --- mobile --- */
 @media (max-width: 768px) {
     /* 1. 缩小卡片内边距：上下留 2rem，左右留 1.5rem，给文字释放横向空间 */
     .project-card {
