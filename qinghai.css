@@ -136,7 +136,11 @@ body::after {
     }
 
     .gallery-track {
-        padding: 0 9vw; /* 手机端留白稍微小一点 */
+        align-items: flex-start;
+        /* 👇 2. 手动接管留白 (顺序是：上 右 下 左)
+           18vh 是距离顶部的距离（避开返回按钮），你可以自己微调这个数字
+           左右保留 10vw 的呼吸感，底部设为 0 */
+        padding: 18vh 10vw 0 10vw;
         gap: 5vw; 
     }
 
