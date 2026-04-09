@@ -91,19 +91,29 @@ html, body {
 
 .end-credits h2 { font-size: 2rem; opacity: 0.5; }
 
-/* 电脑端滑动提示 */
+/* ========================================= */
+/* 👇 从这里开始，覆盖你 CSS 文件的下半部分 👇 */
+/* ========================================= */
+
+/* --- 滚动提示（电脑端） --- */
 body::after {
     content: 'SCROLL TO EXPLORE →';
     position: fixed;
-    bottom: 1.5rem;
+    bottom: 2rem;
     right: 3rem;
     color: rgba(255, 255, 255, 0.4); 
-    font-size: 0.88rem;
+    font-size: 0.75rem;
     letter-spacing: 0.2em;
     font-weight: 600;
     pointer-events: none; 
     animation: pulse 2s infinite ease-in-out;
     z-index: 10;
+}
+
+/* 中文版提示 */
+body.lang-zh::after {
+    content: '滑动以探索 →';
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 @keyframes pulse {
@@ -112,37 +122,61 @@ body::after {
     100% { opacity: 0.2; transform: translateX(0); }
 }
 
-/* --- 7. 手机端响应式 (修正版) --- */
-@media screen and (max-width: 768px) {
+/* --- 7. 手机端响应式终极适配 --- */
+@media (max-width: 768px) {
     
+    /* 🎯 绝杀：不管中英文，手机端强制隐藏提示！ */
+    body::after {
+        display: none !important; 
+    }
+
     .btn-back {
         top: 1.5rem;
         left: 1.5rem;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
+        opacity: 0.8; 
     }
 
     .gallery-track {
-        align-items: flex-start;
-        /* 这里的 10vh 是距离顶部的空间，如果不生效，说明手机没识别 media query */
-        padding: 10vh 10vw 0 10vw;
-        gap: 6vw; 
+        /* 🎯 解决顶部留白太大：取消垂直居中，改为靠上对齐 */
+        align-items: flex-start; 
+        
+        /* 15vh 是顶部距离，你可以改这个数字来微调高低 */
+        padding: 15vh 10vw 0 10vw; 
+        gap: 5vw; 
     }
 
     .pano-item {
-        /* 🚀 这里是重点！直接拉到 75vh，让你的 Z9 大片填满屏幕 */
-        height: 75vh; 
+        /* 🎯 把图片改大：之前是 50vh，我给你拉大到 60vh。
+           如果觉得还不够大，可以改成 65vh */
+        height: 60vh; 
     }
 
     .pano-item img {
-        border-radius: 18px; 
+        border-radius: 4px; 
     }
 
-    /* 🎯 强制删除提示词 */
-    body::after {
-        display: none !important; /* 加个 !important 锁死它 */
-        content: none !important;
+    .pano-caption {
+        margin-top: 1rem;
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 0.4rem; 
     }
-    
-    .pano-caption h3 { font-size: 1.2rem; }
-    .pano-caption p { font-size: 0.7rem; }
+
+    .pano-caption h3 {
+        font-size: 1.25rem; 
+    }
+
+    .pano-caption p {
+        font-size: 0.7rem; 
+    }
+
+    .end-credits {
+        width: 80vw; 
+    }
+
+    .end-credits h2 {
+        font-size: 1.5rem;
+    }
 }
+/* 👆 确保最后这个大括号一定要在！ */
