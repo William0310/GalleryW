@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William's Photography - Yulong Snow Mountain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="yulong.css?v=101">
+</head>
+<body>
+
+    <nav class="ui-layer">
+        <a href="index.html" class="btn-back">← BACK TO HOME</a>
+        <div class="scroll-hint">💗</div>
+    </nav>
+
+    <div class="data-layer">
+        <div class="altitude-box">
+            <span class="label">27.1°N, 100.2°E</span>
+            <h2 id="alt-text">Blue Moon Valley</h2>
+        </div>
+        <div class="exif-box">
+            <span class="label">EXIF / Z9</span>
+            <p id="exif-text">24MM // F/8 // 1/400s</p>
+        </div>
+    </div>
+<div class="scroll-indicator" id="scroll-indicator">
+        <div class="indicator-text">SCROLL</div>
+        <div class="indicator-line">
+            <div class="line-progress"></div>
+        </div>
+    </div>
+    <main class="frozen-viewport">
+        
+        <div class="slide active" data-alt="Blue Moon Valley" data-exif="24MM // F/8 // 1/320s">
+            <div class="vignette"></div>
+            <img src="images/lijiang1.webp" alt="Ganhaizi" fetchpriority="high">
+        </div>
+
+        <div class="slide" data-alt="Prayer Flag" data-exif="28MM // F/6.3 // 1/1600s">
+            <div class="vignette"></div>
+            <img src="images/lijiang3.webp" alt="Glacier Park" loading="lazy">
+        </div>
+
+        <div class="slide" data-alt="4680M" data-exif="44MM // F/6.3 // 1/1600s">
+            <div class="vignette"></div>
+            <img src="images/lijiang4.webp" alt="The Peak" loading="lazy">
+        </div>
+
+        <div class="slide" data-alt="MaoNiuPing." data-exif="120MM // F/4 // 1/4000s">
+            <div class="vignette"></div>
+            <img src="images/lijiang5.webp" alt="Cloud Sea" loading="lazy">
+        </div>
+         <div class="slide" data-alt="'Permanent Resident'" data-exif="END OF THE CHAPTER">
+            <div class="vignette"></div>
+            <img src="images/cow.webp" alt="Cloud Sea" loading="lazy">
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const altText = document.getElementById('alt-text');
+            const exifText = document.getElementById('exif-text');
+            
+            let current = 0;
+            let isAnimating = false; // 动画锁，防止用户狂滚鼠标
+
+            // 核心溶解切换函数
+            function goToSlide(index) {
+                if (isAnimating || index === current || index < 0 || index >= slides.length) return;
+                
+                isAnimating = true;
+
+                // 1. 拿掉当前照片的 active，它会开始模糊并消失
+                slides[current].classList.remove('active');
+                
+                // 2. 更新索引
+                current = index;
+                
+                // 3. 给下一张照片加上 active，它会从大雾中清晰地浮现
+                slides[current].classList.add('active');
+
+                // 4. 更新仪表盘文字 (加一点延迟，让文字和图像的浮现节奏一致)
+                setTimeout(() => {
+                    altText.innerText = slides[current].getAttribute('data-alt');
+                    exifText.innerText = slides[current].getAttribute('data-exif');
+                }, 400); // 400ms 后文字切换
+
+                // 5. 锁定 1.5 秒，这期间用户怎么滑都没用，强迫他们静静看完过渡
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 1500); 
+            }
+
+            // --- 电脑端：监听鼠标滚轮 ---
+            window.addEventListener('wheel', (e) => {
+                if (e.deltaY > 30) goToSlide(current + 1); // 向下滚，海拔上升
+                if (e.deltaY < -30) goToSlide(current - 1); // 向上滚，海拔下降
+            });
+
+            // --- 手机端：监听手指滑动 ---
+            let touchStartY = 0;
+            window.addEventListener('touchstart', e => touchStartY = e.touches[0].clientY);
+            window.addEventListener('touchend', e => {
+                const touchEndY = e.changedTouches[0].clientY;
+                const delta = touchStartY - touchEndY;
+                
+                if (delta > 50) goToSlide(current + 1); // 向上划，看下一张
+                if (delta < -50) goToSlide(current - 1); // 向下划，看上一张
+            });
+        });
+    </script>
+</body>
+</html>
