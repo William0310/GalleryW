@@ -16,7 +16,51 @@ html, body {
 }
 
 
+/* --- 专属的滑动引导线 --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem; /* 和两边的数据保持在同一水平线上 */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    z-index: 100;
+    pointer-events: none;
+    /* 极其平滑的消散动画 */
+    transition: opacity 1s ease-out, filter 1s ease-out; 
+}
 
+.indicator-text {
+    font-size: 1rem; /* 极致的小 */
+    letter-spacing: 0.4em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.indicator-line {
+    width: 1px; /* 极细的线 */
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+/* 这根纯白色的线会像水滴一样不断坠落 */
+.line-progress {
+    width: 100%;
+    height: 100%;
+    background-color: #e5feff;
+    position: absolute;
+    top: -100%;
+    animation: scrollDrop 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+@keyframes scrollDrop {
+    0% { top: -100%; }
+    50% { top: 0; }
+    100% { top: 100%; }
+}
 /* --- 2. 悬浮组件 --- */
 .btn-back {
     position: fixed; top: 2rem; left: 2rem; z-index: 100;

@@ -174,7 +174,50 @@ html, body {
     opacity: 1;
     transform: translateY(0);
 }
+.scroll-indicator {
+    position: fixed; /* 重庆篇是 fixed 定位 */
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    z-index: 100;
+    pointer-events: none;
+    /* 极其平滑的消散动画 */
+    transition: opacity 0.8s ease-out, filter 0.8s ease-out; 
+}
 
+.indicator-text {
+    font-size: 1rem;
+    letter-spacing: 0.4em;
+    color: rgba(255, 204, 204, 1); /* 替换为微弱的赛博青色 */
+}
+
+.indicator-line {
+    width: 1px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    position: relative;
+}
+
+.line-progress {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* 坠落的光滴也是青色 */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* 自带一点霓虹辉光 */
+    position: absolute;
+    top: -100%;
+    animation: scrollDrop 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+@keyframes scrollDrop {
+    0% { top: -100%; }
+    50% { top: 0; }
+    100% { top: 100%; }
+}
 /* --- 8. 结尾 --- */
 .end-credits {
     height: 25vh;
@@ -189,6 +232,7 @@ html, body {
 .photo-card:last-of-type {
     margin-bottom: 5vh; /* 让它离结尾更近一点 */
 }
+
 
 /* --- 9. 手机端响应式 --- */
 @media (max-width: 768px) {
